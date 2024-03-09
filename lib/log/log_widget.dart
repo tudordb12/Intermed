@@ -26,26 +26,6 @@ class _LogWidgetState extends State<LogWidget> with TickerProviderStateMixin {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = {
-    'containerOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        ScaleEffect(
-          curve: Curves.bounceOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: Offset(0.6, 0.6),
-          end: Offset(1.0, 1.0),
-        ),
-      ],
-    ),
     'textOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -161,24 +141,15 @@ class _LogWidgetState extends State<LogWidget> with TickerProviderStateMixin {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: 100.0,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).accent4,
-                        borderRadius: BorderRadius.circular(16.0),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        'assets/images/Untitled_design_(1)_(1).png',
+                        width: 140.0,
+                        height: 194.0,
+                        fit: BoxFit.cover,
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/images/Untitled_design_(1)_(1).png',
-                          width: 300.0,
-                          height: 200.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ).animateOnPageLoad(
-                        animationsMap['containerOnPageLoadAnimation']!),
+                    ),
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
@@ -351,7 +322,7 @@ class _LogWidgetState extends State<LogWidget> with TickerProviderStateMixin {
                                 0.0, 0.0, 0.0, 0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
+                            color: Color(0xFF02CACF),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -372,12 +343,12 @@ class _LogWidgetState extends State<LogWidget> with TickerProviderStateMixin {
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
-                            0.0, 20.0, 0.0, 16.0),
+                            0.0, 10.0, 0.0, 13.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             context.pushNamed('signup');
                           },
-                          text: 'sign up',
+                          text: 'Nu aveti un cont?',
                           options: FFButtonOptions(
                             width: 230.0,
                             height: 44.0,
@@ -404,73 +375,66 @@ class _LogWidgetState extends State<LogWidget> with TickerProviderStateMixin {
                     animationsMap['columnOnPageLoadAnimation']!),
               ),
             ),
-            FlutterFlowIconButton(
-              borderColor: FlutterFlowTheme.of(context).primary,
-              borderRadius: 20.0,
-              borderWidth: 1.0,
-              buttonSize: 40.0,
-              fillColor: FlutterFlowTheme.of(context).accent1,
-              icon: Icon(
-                Icons.fingerprint_rounded,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 24.0,
-              ),
-              onPressed: () async {
-                final _localAuth = LocalAuthentication();
-                bool _isBiometricSupported =
-                    await _localAuth.isDeviceSupported();
+            Align(
+              alignment: AlignmentDirectional(0.0, 0.0),
+              child: FlutterFlowIconButton(
+                borderRadius: 100.0,
+                borderWidth: 1.0,
+                buttonSize: 80.0,
+                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                icon: Icon(
+                  Icons.fingerprint_rounded,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 40.0,
+                ),
+                onPressed: () async {
+                  final _localAuth = LocalAuthentication();
+                  bool _isBiometricSupported =
+                      await _localAuth.isDeviceSupported();
 
-                if (_isBiometricSupported) {
-                  _model.variabila = await _localAuth.authenticate(
-                      localizedReason:
-                          'folositi datele biometrice pentru a va autentifica');
+                  if (_isBiometricSupported) {
+                    _model.variabila = await _localAuth.authenticate(
+                        localizedReason:
+                            'folositi datele biometrice pentru a va autentifica');
+                    setState(() {});
+                  }
+
+                  setState(() {
+                    _model.emailAddressController?.text =
+                        'beu.robert2015@gmail.com';
+                  });
+                  setState(() {
+                    _model.passwordController?.text = 'hatasoft';
+                  });
+                  GoRouter.of(context).prepareAuthEvent();
+
+                  final user = await authManager.signInWithEmail(
+                    context,
+                    _model.emailAddressController.text,
+                    _model.passwordController.text,
+                  );
+                  if (user == null) {
+                    return;
+                  }
+
+                  context.goNamedAuth('home', context.mounted);
+
                   setState(() {});
-                }
-
-                setState(() {
-                  _model.emailAddressController?.text =
-                      'beu.robert2015@gmail.com';
-                });
-                setState(() {
-                  _model.passwordController?.text = 'hatasoft';
-                });
-                GoRouter.of(context).prepareAuthEvent();
-
-                final user = await authManager.signInWithEmail(
-                  context,
-                  _model.emailAddressController.text,
-                  _model.passwordController.text,
-                );
-                if (user == null) {
-                  return;
-                }
-
-                context.goNamedAuth('home', context.mounted);
-
-                setState(() {});
-              },
+                },
+              ),
             ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Align(
-                  alignment: AlignmentDirectional(-1.0, 1.0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      if (_model.textController.text == '99000') {
-                        context.pushNamed(
-                          'cl1',
-                          queryParameters: {
-                            'press': serializeParam(
-                              false,
-                              ParamType.bool,
-                            ),
-                          }.withoutNulls,
-                        );
-                      } else {
-                        if (_model.textController.text == '88000') {
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 80.0, 0.0, 0.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Align(
+                    alignment: AlignmentDirectional(-1.0, 1.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        if (_model.textController.text == '99000') {
                           context.pushNamed(
-                            'cl2',
+                            'cl1',
                             queryParameters: {
                               'press': serializeParam(
                                 false,
@@ -479,9 +443,9 @@ class _LogWidgetState extends State<LogWidget> with TickerProviderStateMixin {
                             }.withoutNulls,
                           );
                         } else {
-                          if (_model.textController.text == '77000') {
+                          if (_model.textController.text == '88000') {
                             context.pushNamed(
-                              'cl3',
+                              'cl2',
                               queryParameters: {
                                 'press': serializeParam(
                                   false,
@@ -490,9 +454,9 @@ class _LogWidgetState extends State<LogWidget> with TickerProviderStateMixin {
                               }.withoutNulls,
                             );
                           } else {
-                            if (_model.textController.text == '66000') {
+                            if (_model.textController.text == '77000') {
                               context.pushNamed(
-                                'cl4',
+                                'cl3',
                                 queryParameters: {
                                   'press': serializeParam(
                                     false,
@@ -500,81 +464,94 @@ class _LogWidgetState extends State<LogWidget> with TickerProviderStateMixin {
                                   ),
                                 }.withoutNulls,
                               );
+                            } else {
+                              if (_model.textController.text == '66000') {
+                                context.pushNamed(
+                                  'cl4',
+                                  queryParameters: {
+                                    'press': serializeParam(
+                                      false,
+                                      ParamType.bool,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              }
                             }
                           }
                         }
-                      }
-                    },
-                    text: 'acces',
-                    options: FFButtonOptions(
-                      height: 40.0,
+                      },
+                      text: 'acces',
+                      options: FFButtonOptions(
+                        height: 40.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: Color(0xFF02CACF),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                ),
+                        elevation: 3.0,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
-                              ),
-                      elevation: 3.0,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                      child: TextFormField(
+                        controller: _model.textController,
+                        focusNode: _model.textFieldFocusNode,
+                        autofocus: true,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelText: 'cod clinica',
+                          labelStyle: FlutterFlowTheme.of(context).labelMedium,
+                          hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          errorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedErrorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium,
+                        validator:
+                            _model.textControllerValidator.asValidator(context),
                       ),
-                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                    child: TextFormField(
-                      controller: _model.textController,
-                      focusNode: _model.textFieldFocusNode,
-                      autofocus: true,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: 'cod cliica',
-                        labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                        hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        errorBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedErrorBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium,
-                      validator:
-                          _model.textControllerValidator.asValidator(context),
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

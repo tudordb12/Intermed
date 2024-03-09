@@ -56,8 +56,8 @@ class _QrrWidgetState extends State<QrrWidget> {
               color: Color(0xFF13C0C9),
               size: 24.0,
             ),
-            onPressed: () {
-              print('IconButton pressed ...');
+            onPressed: () async {
+              context.safePop();
             },
           ),
           title: Text(

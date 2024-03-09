@@ -110,7 +110,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                   r'''$.role''',
                                 ).toString()))
                                   Container(
-                                    width: 100.0,
+                                    width: 389.0,
                                     height: 100.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
@@ -143,7 +143,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                   r'''$.role''',
                                 ).toString()))
                                   Container(
-                                    width: 100.0,
+                                    width: 439.0,
                                     height: 100.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)

@@ -415,7 +415,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                       autofillHints: [AutofillHints.password],
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'telefon',
+                                        labelText: 'Telefon',
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
@@ -774,7 +774,8 @@ class _SignupWidgetState extends State<SignupWidget> {
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: Color(0xFF4B39EF),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(

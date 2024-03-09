@@ -52,7 +52,7 @@ class _NotioWidgetState extends State<NotioWidget> {
             buttonSize: 60.0,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: Color(0xFF169DA8),
               size: 30.0,
             ),
             onPressed: () async {
@@ -63,7 +63,7 @@ class _NotioWidgetState extends State<NotioWidget> {
             'Notificari',
             style: FlutterFlowTheme.of(context).headlineSmall.override(
                   fontFamily: 'Outfit',
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: FlutterFlowTheme.of(context).primaryBackground,
                 ),
           ),
           actions: [],
@@ -334,7 +334,7 @@ class _NotioWidgetState extends State<NotioWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 30.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 50.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
