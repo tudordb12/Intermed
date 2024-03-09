@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "708173746559",
+    "project_id": "heckalton-olfww4",
+    "storage_bucket": "heckalton-olfww4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708173746559:android:f8c1ee0c97f011fff24a4a",
+        "android_client_info": {
+          "package_name": "com.mycompany.heckalton"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKgHMubzkg8cJoTN990Vm907-i0jMbViw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
