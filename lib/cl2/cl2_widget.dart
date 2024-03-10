@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/push_notifications/push_notifications_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -177,7 +179,7 @@ class _Cl2WidgetState extends State<Cl2Widget> {
                         alignment: AlignmentDirectional(1.0, 1.0),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 8.0, 0.0),
+                              0.0, 550.0, 8.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor: FlutterFlowTheme.of(context).primary,
                             borderRadius: 20.0,
@@ -193,6 +195,17 @@ class _Cl2WidgetState extends State<Cl2Widget> {
                               setState(() {
                                 _model.fff = true;
                               });
+                              triggerPushNotification(
+                                notificationTitle: 'reducere',
+                                notificationText:
+                                    'cabinet imagistica de la ora 15-19 liber 20% off',
+                                notificationSound: 'default',
+                                userRefs: [currentUserReference!],
+                                initialPageName: 'art2',
+                                parameterData: {
+                                  'verificat': false,
+                                },
+                              );
                             },
                           ),
                         ),

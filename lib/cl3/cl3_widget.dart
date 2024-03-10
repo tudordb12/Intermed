@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/push_notifications/push_notifications_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -188,7 +190,7 @@ class _Cl3WidgetState extends State<Cl3Widget> {
                         alignment: AlignmentDirectional(1.0, 1.0),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 8.0, 0.0),
+                              0.0, 550.0, 8.0, 0.0),
                           child: FlutterFlowIconButton(
                             borderColor: FlutterFlowTheme.of(context).primary,
                             borderRadius: 20.0,
@@ -204,6 +206,15 @@ class _Cl3WidgetState extends State<Cl3Widget> {
                               setState(() {
                                 _model.fff = true;
                               });
+                              triggerPushNotification(
+                                notificationTitle: 'Oferta cabinet ortopedic',
+                                notificationText:
+                                    'Pogrameazate la ortoped 10 - 11 liber 20% off',
+                                notificationSound: 'default',
+                                userRefs: [currentUserReference!],
+                                initialPageName: 'art3',
+                                parameterData: {},
+                              );
                             },
                           ),
                         ),

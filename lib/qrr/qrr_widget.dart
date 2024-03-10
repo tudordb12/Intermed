@@ -65,6 +65,7 @@ class _QrrWidgetState extends State<QrrWidget> {
             style: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: 'Readex Pro',
                   color: FlutterFlowTheme.of(context).primaryBackground,
+                  fontSize: 20.0,
                 ),
           ),
           actions: [],

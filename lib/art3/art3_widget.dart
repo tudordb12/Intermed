@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/push_notifications/push_notifications_util.dart';
 import '/flutter_flow/flutter_flow_audio_player.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -46,6 +48,30 @@ class _Art3WidgetState extends State<Art3Widget> {
         key: scaffoldKey,
         resizeToAvoidBottomInset: false,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(50.0),
+          child: AppBar(
+            backgroundColor: Color(0xFF2C2F37),
+            automaticallyImplyLeading: false,
+            leading: FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.arrow_back_rounded,
+                color: Color(0xFF02CACF),
+                size: 30.0,
+              ),
+              onPressed: () async {
+                context.pop();
+              },
+            ),
+            actions: [],
+            centerTitle: true,
+            elevation: 2.0,
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: Column(
@@ -109,7 +135,7 @@ class _Art3WidgetState extends State<Art3Widget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -158,8 +184,17 @@ class _Art3WidgetState extends State<Art3Widget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          triggerPushNotification(
+                            notificationTitle: 'Propgarmare',
+                            notificationText:
+                                'Ai o programare de la ora 10 -11',
+                            userRefs: [currentUserReference!],
+                            initialPageName: 'cl3',
+                            parameterData: {
+                              'press': false,
+                            },
+                          );
                         },
                         text: 'Programeaza-te',
                         options: FFButtonOptions(
@@ -199,7 +234,7 @@ class _Art3WidgetState extends State<Art3Widget> {
                   initialRating: _model.ratingBarValue ??= 3.0,
                   unratedColor: FlutterFlowTheme.of(context).accent3,
                   itemCount: 5,
-                  itemSize: 40.0,
+                  itemSize: 20.0,
                   glowColor: Color(0xFFFF7800),
                 ),
               ),
@@ -210,6 +245,7 @@ class _Art3WidgetState extends State<Art3Widget> {
                     'assets/audios/mp3-output-ttsfree(dot)com_(3).mp3',
                     metas: Metas(
                       id: 'mp3-output-ttsfree(dot)com_(3).mp3-c2c832e7',
+                      title: 'Redare audio',
                     ),
                   ),
                   titleTextStyle: FlutterFlowTheme.of(context).titleLarge,
@@ -226,8 +262,7 @@ class _Art3WidgetState extends State<Art3Widget> {
               Align(
                 alignment: AlignmentDirectional(0.0, 1.0),
                 child: Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 20.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -393,7 +393,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   alignment: AlignmentDirectional(0.0, 1.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 110.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 130.0, 16.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

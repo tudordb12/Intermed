@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/push_notifications/push_notifications_util.dart';
 import '/flutter_flow/flutter_flow_audio_player.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -51,6 +53,30 @@ class _Art2WidgetState extends State<Art2Widget> {
         key: scaffoldKey,
         resizeToAvoidBottomInset: false,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(50.0),
+          child: AppBar(
+            backgroundColor: Color(0xFF2C2F37),
+            automaticallyImplyLeading: false,
+            leading: FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.arrow_back_rounded,
+                color: Color(0xFF02CACF),
+                size: 30.0,
+              ),
+              onPressed: () async {
+                context.pop();
+              },
+            ),
+            actions: [],
+            centerTitle: true,
+            elevation: 2.0,
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: Column(
@@ -96,7 +122,7 @@ class _Art2WidgetState extends State<Art2Widget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: Text(
-                  '\nCabinetul de imagistică medicală oferă servicii de diagnostic avansat utilizând tehnologii precum radiografia, tomografia computerizată (CT), rezonanța magnetică (RMN) și ecografia. Echipa de profesioniști specializați interpretează imaginile pentru a identifica și evalua diverse afecțiuni medicale, facilitând tratamentul optim al pacienților.',
+                  '\nCabinetul de imagistică medicală oferă servicii de diagnostic avansat utilizând tehnologii precum radiografia, tomografia computerizată (CT), rezonanța magnetică (RMN) și ecografia. Echipa de profesioniști  interpretează rezultatul',
                   style: FlutterFlowTheme.of(context).labelMedium.override(
                         fontFamily: 'Readex Pro',
                         fontSize: 16.0,
@@ -188,6 +214,18 @@ class _Art2WidgetState extends State<Art2Widget> {
                             ),
                           }.withoutNulls,
                         );
+
+                        triggerPushNotification(
+                          notificationTitle: 'Oferta',
+                          notificationText: 'Programare ora 15-16 20% off',
+                          notificationSound: 'default',
+                          userRefs: [currentUserReference!],
+                          initialPageName: 'cl2',
+                          parameterData: {
+                            'press': false,
+                            'verificat': false,
+                          },
+                        );
                       },
                       text: 'Progreameaza-te',
                       options: FFButtonOptions(
@@ -226,17 +264,18 @@ class _Art2WidgetState extends State<Art2Widget> {
                   initialRating: _model.ratingBarValue ??= 5.0,
                   unratedColor: FlutterFlowTheme.of(context).accent3,
                   itemCount: 5,
-                  itemSize: 30.0,
+                  itemSize: 20.0,
                   glowColor: Color(0xFFFF7800),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 10.0),
                 child: FlutterFlowAudioPlayer(
                   audio: Audio(
                     'assets/audios/mp3-output-ttsfree(dot)com_(2).mp3',
                     metas: Metas(
                       id: 'mp3-output-ttsfree(dot)com_(2).mp3-7cb6f82e',
+                      title: 'Redare audio',
                     ),
                   ),
                   titleTextStyle: FlutterFlowTheme.of(context).titleLarge,

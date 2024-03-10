@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/push_notifications/push_notifications_util.dart';
 import '/flutter_flow/flutter_flow_audio_player.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -46,6 +48,33 @@ class _Art4WidgetState extends State<Art4Widget> {
         key: scaffoldKey,
         resizeToAvoidBottomInset: false,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.0),
+          child: AppBar(
+            backgroundColor: Color(0xFF2C2F37),
+            automaticallyImplyLeading: false,
+            leading: Align(
+              alignment: AlignmentDirectional(0.0, 0.0),
+              child: FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30.0,
+                borderWidth: 1.0,
+                buttonSize: 60.0,
+                icon: Icon(
+                  Icons.arrow_back_rounded,
+                  color: Color(0xFF02CACF),
+                  size: 30.0,
+                ),
+                onPressed: () async {
+                  context.pop();
+                },
+              ),
+            ),
+            actions: [],
+            centerTitle: true,
+            elevation: 2.0,
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: Column(
@@ -91,7 +120,7 @@ class _Art4WidgetState extends State<Art4Widget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: Text(
-                  'Suntem o echipă dedicată și experimentată de medici specializați în otorinolaringologie, gata să vă ofere îngrijire personalizată pentru toate problemele legate de urechi, nas și gât. Situat în inima orașului nostru, ne-am angajat să furnizăm servicii medicale de cea mai înaltă calitate într-un mediu primitor și confortabil.',
+                  'Suntem o echipă dedicată și experimentată de medici specializați în otorinolaringologie, gata să vă ofere îngrijire personalizată pentru toate problemele legate de urechi, nas și gât. Situat în inima orașului nostru si ne-am angajat să furnizăm servicii medicale de cea mai înaltă calitate.într-un mediu primitor și confortabil.',
                   style: FlutterFlowTheme.of(context).labelMedium.override(
                         fontFamily: 'Readex Pro',
                         fontSize: 15.0,
@@ -106,7 +135,7 @@ class _Art4WidgetState extends State<Art4Widget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -152,8 +181,17 @@ class _Art4WidgetState extends State<Art4Widget> {
                       ),
                     ),
                     FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        triggerPushNotification(
+                          notificationTitle: 'Programare',
+                          notificationText: 'Programare de la 9 - 11',
+                          notificationSound: 'default',
+                          userRefs: [currentUserReference!],
+                          initialPageName: 'cl4',
+                          parameterData: {
+                            'press': false,
+                          },
+                        );
                       },
                       text: 'Programeaza-te',
                       options: FFButtonOptions(
@@ -192,7 +230,7 @@ class _Art4WidgetState extends State<Art4Widget> {
                   initialRating: _model.ratingBarValue ??= 3.0,
                   unratedColor: FlutterFlowTheme.of(context).accent3,
                   itemCount: 5,
-                  itemSize: 30.0,
+                  itemSize: 20.0,
                   glowColor: Color(0xFFFF7800),
                 ),
               ),
@@ -203,11 +241,19 @@ class _Art4WidgetState extends State<Art4Widget> {
                     'assets/audios/mp3-output-ttsfree(dot)com_(4).mp3',
                     metas: Metas(
                       id: 'mp3-output-ttsfree(dot)com_(4).mp3-d85acee4',
+                      title: 'Redare audio',
                     ),
                   ),
-                  titleTextStyle: FlutterFlowTheme.of(context).titleLarge,
+                  titleTextStyle:
+                      FlutterFlowTheme.of(context).titleLarge.override(
+                            fontFamily: 'Outfit',
+                            fontSize: 15.0,
+                          ),
                   playbackDurationTextStyle:
-                      FlutterFlowTheme.of(context).labelMedium,
+                      FlutterFlowTheme.of(context).labelMedium.override(
+                            fontFamily: 'Readex Pro',
+                            fontSize: 12.0,
+                          ),
                   fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                   playbackButtonColor: FlutterFlowTheme.of(context).primary,
                   activeTrackColor: FlutterFlowTheme.of(context).alternate,
@@ -217,7 +263,7 @@ class _Art4WidgetState extends State<Art4Widget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.0, 1.0),
+                alignment: AlignmentDirectional(0.0, -1.0),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: Row(
