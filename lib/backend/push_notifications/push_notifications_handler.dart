@@ -112,11 +112,19 @@ class ParameterData {
 
 final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
-  'log': ParameterData.none(),
+  'log': (data) async => ParameterData(
+        allParams: {
+          'cont1': getParameter<bool>(data, 'cont1'),
+        },
+      ),
   'signup': ParameterData.none(),
   'home': ParameterData.none(),
   'art1': ParameterData.none(),
-  'art2': ParameterData.none(),
+  'art2': (data) async => ParameterData(
+        allParams: {
+          'verificat': getParameter<bool>(data, 'verificat'),
+        },
+      ),
   'art3': ParameterData.none(),
   'art4': ParameterData.none(),
   'search': ParameterData.none(),
@@ -127,11 +135,14 @@ final parametersBuilderMap =
   'cl1': (data) async => ParameterData(
         allParams: {
           'press': getParameter<bool>(data, 'press'),
+          'verificat': getParameter<bool>(data, 'verificat'),
+          'cont1': getParameter<bool>(data, 'cont1'),
         },
       ),
   'cl2': (data) async => ParameterData(
         allParams: {
           'press': getParameter<bool>(data, 'press'),
+          'verificat': getParameter<bool>(data, 'verificat'),
         },
       ),
   'cl3': (data) async => ParameterData(
@@ -144,6 +155,7 @@ final parametersBuilderMap =
           'press': getParameter<bool>(data, 'press'),
         },
       ),
+  'frontplpage': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

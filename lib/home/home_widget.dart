@@ -155,7 +155,15 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   size: 24.0,
                                 ),
                                 onPressed: () async {
-                                  context.pushNamed('art2');
+                                  context.pushNamed(
+                                    'art2',
+                                    queryParameters: {
+                                      'verificat': serializeParam(
+                                        false,
+                                        ParamType.bool,
+                                      ),
+                                    }.withoutNulls,
+                                  );
                                 },
                               ),
                             ),
@@ -172,7 +180,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   width: 363.0,
                   height: 272.0,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: FlutterFlowTheme.of(context).primaryBackground,
                   ),
                   child: Padding(
                     padding:
@@ -304,7 +312,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 alignment: AlignmentDirectional(0.0, 1.0),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 65.0, 16.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 60.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -315,7 +323,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         buttonSize: 60.0,
                         icon: Icon(
                           Icons.home_filled,
-                          color: Color(0xFF2C2F37),
+                          color: FlutterFlowTheme.of(context).primary,
                           size: 30.0,
                         ),
                         onPressed: () async {

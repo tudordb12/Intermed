@@ -14,7 +14,12 @@ import 'log_model.dart';
 export 'log_model.dart';
 
 class LogWidget extends StatefulWidget {
-  const LogWidget({super.key});
+  const LogWidget({
+    super.key,
+    required this.cont1,
+  });
+
+  final bool? cont1;
 
   @override
   State<LogWidget> createState() => _LogWidgetState();
@@ -237,7 +242,7 @@ class _LogWidgetState extends State<LogWidget> with TickerProviderStateMixin {
                           autofillHints: [AutofillHints.password],
                           obscureText: !_model.passwordVisibility,
                           decoration: InputDecoration(
-                            labelText: 'parola',
+                            labelText: 'Parolă',
                             labelStyle:
                                 FlutterFlowTheme.of(context).labelMedium,
                             enabledBorder: OutlineInputBorder(
@@ -314,7 +319,7 @@ class _LogWidgetState extends State<LogWidget> with TickerProviderStateMixin {
 
                             context.goNamedAuth('home', context.mounted);
                           },
-                          text: 'Log in',
+                          text: 'Log In',
                           options: FFButtonOptions(
                             width: 230.0,
                             height: 52.0,
@@ -348,7 +353,7 @@ class _LogWidgetState extends State<LogWidget> with TickerProviderStateMixin {
                           onPressed: () async {
                             context.pushNamed('signup');
                           },
-                          text: 'Nu aveti un cont?',
+                          text: 'Nu aveți un cont?',
                           options: FFButtonOptions(
                             width: 230.0,
                             height: 44.0,
@@ -378,9 +383,10 @@ class _LogWidgetState extends State<LogWidget> with TickerProviderStateMixin {
             Align(
               alignment: AlignmentDirectional(0.0, 0.0),
               child: FlutterFlowIconButton(
+                borderColor: FlutterFlowTheme.of(context).secondaryBackground,
                 borderRadius: 100.0,
                 borderWidth: 1.0,
-                buttonSize: 80.0,
+                buttonSize: 70.0,
                 fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                 icon: Icon(
                   Icons.fingerprint_rounded,
@@ -430,44 +436,48 @@ class _LogWidgetState extends State<LogWidget> with TickerProviderStateMixin {
                 children: [
                   Align(
                     alignment: AlignmentDirectional(-1.0, 1.0),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        if (_model.textController.text == '99000') {
-                          context.pushNamed(
-                            'cl1',
-                            queryParameters: {
-                              'press': serializeParam(
-                                false,
-                                ParamType.bool,
-                              ),
-                            }.withoutNulls,
-                          );
-                        } else {
-                          if (_model.textController.text == '88000') {
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          if (_model.textController.text == '99000') {
                             context.pushNamed(
-                              'cl2',
+                              'cl1',
                               queryParameters: {
                                 'press': serializeParam(
+                                  false,
+                                  ParamType.bool,
+                                ),
+                                'verificat': serializeParam(
+                                  false,
+                                  ParamType.bool,
+                                ),
+                                'cont1': serializeParam(
                                   false,
                                   ParamType.bool,
                                 ),
                               }.withoutNulls,
                             );
                           } else {
-                            if (_model.textController.text == '77000') {
+                            if (_model.textController.text == '88000') {
                               context.pushNamed(
-                                'cl3',
+                                'cl2',
                                 queryParameters: {
                                   'press': serializeParam(
+                                    false,
+                                    ParamType.bool,
+                                  ),
+                                  'verificat': serializeParam(
                                     false,
                                     ParamType.bool,
                                   ),
                                 }.withoutNulls,
                               );
                             } else {
-                              if (_model.textController.text == '66000') {
+                              if (_model.textController.text == '77000') {
                                 context.pushNamed(
-                                  'cl4',
+                                  'cl3',
                                   queryParameters: {
                                     'press': serializeParam(
                                       false,
@@ -475,37 +485,49 @@ class _LogWidgetState extends State<LogWidget> with TickerProviderStateMixin {
                                     ),
                                   }.withoutNulls,
                                 );
+                              } else {
+                                if (_model.textController.text == '66000') {
+                                  context.pushNamed(
+                                    'cl4',
+                                    queryParameters: {
+                                      'press': serializeParam(
+                                        false,
+                                        ParamType.bool,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+                                }
                               }
                             }
                           }
-                        }
-                      },
-                      text: 'acces',
-                      options: FFButtonOptions(
-                        height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFF02CACF),
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                ),
-                        elevation: 3.0,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                        },
+                        text: 'acces',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: Color(0xFF02CACF),
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
                   ),
                   Expanded(
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 20.0, 0.0),
                       child: TextFormField(
                         controller: _model.textController,
                         focusNode: _model.textFieldFocusNode,

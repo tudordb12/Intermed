@@ -81,18 +81,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? HomeWidget() : LogWidget(),
+          appStateNotifier.loggedIn ? HomeWidget() : FrontplpageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomeWidget() : LogWidget(),
+              appStateNotifier.loggedIn ? HomeWidget() : FrontplpageWidget(),
         ),
         FFRoute(
           name: 'log',
           path: '/log',
-          builder: (context, params) => LogWidget(),
+          builder: (context, params) => LogWidget(
+            cont1: params.getParam('cont1', ParamType.bool),
+          ),
         ),
         FFRoute(
           name: 'signup',
@@ -112,7 +114,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'art2',
           path: '/art2',
-          builder: (context, params) => Art2Widget(),
+          builder: (context, params) => Art2Widget(
+            verificat: params.getParam('verificat', ParamType.bool),
+          ),
         ),
         FFRoute(
           name: 'art3',
@@ -154,6 +158,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/cl1',
           builder: (context, params) => Cl1Widget(
             press: params.getParam('press', ParamType.bool),
+            verificat: params.getParam('verificat', ParamType.bool),
+            cont1: params.getParam('cont1', ParamType.bool),
           ),
         ),
         FFRoute(
@@ -161,6 +167,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/cl2',
           builder: (context, params) => Cl2Widget(
             press: params.getParam('press', ParamType.bool),
+            verificat: params.getParam('verificat', ParamType.bool),
           ),
         ),
         FFRoute(
@@ -176,6 +183,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => Cl4Widget(
             press: params.getParam('press', ParamType.bool),
           ),
+        ),
+        FFRoute(
+          name: 'frontplpage',
+          path: '/frontplpage',
+          builder: (context, params) => FrontplpageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -343,7 +355,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/log';
+            return '/frontplpage';
           }
           return null;
         },

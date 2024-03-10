@@ -15,3 +15,4 @@ export '/cl1/cl1_widget.dart' show Cl1Widget;
 export '/cl2/cl2_widget.dart' show Cl2Widget;
 export '/cl3/cl3_widget.dart' show Cl3Widget;
 export '/cl4/cl4_widget.dart' show Cl4Widget;
+export '/frontplpage/frontplpage_widget.dart' show FrontplpageWidget;

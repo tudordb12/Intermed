@@ -82,7 +82,7 @@ class _NotioWidgetState extends State<NotioWidget> {
             scrollDirection: Axis.vertical,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -110,13 +110,15 @@ class _NotioWidgetState extends State<NotioWidget> {
                           width: 32.0,
                           height: 32.0,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).accent1,
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
                             shape: BoxShape.circle,
                             border: Border.all(
                               color: FlutterFlowTheme.of(context).primary,
                               width: 2.0,
                             ),
                           ),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Icon(
                             Icons.add_comment_rounded,
                             color: FlutterFlowTheme.of(context).primaryText,
@@ -133,7 +135,7 @@ class _NotioWidgetState extends State<NotioWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'New notification !',
+                                  'Notificare nouă!',
                                   maxLines: 1,
                                   style: FlutterFlowTheme.of(context).bodyLarge,
                                 ),
@@ -238,7 +240,8 @@ class _NotioWidgetState extends State<NotioWidget> {
                           width: 32.0,
                           height: 32.0,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).accent1,
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
                             shape: BoxShape.circle,
                             border: Border.all(
                               color: FlutterFlowTheme.of(context).primary,
@@ -261,7 +264,7 @@ class _NotioWidgetState extends State<NotioWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'New notification !',
+                                  'Notificare nouă!\n',
                                   maxLines: 1,
                                   style: FlutterFlowTheme.of(context).bodyLarge,
                                 ),
@@ -298,7 +301,7 @@ class _NotioWidgetState extends State<NotioWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 4.0),
                                   child: Text(
-                                    '2 hours ago',
+                                    '1.5 hours ago',
                                     style: FlutterFlowTheme.of(context)
                                         .labelSmall
                                         .override(
@@ -334,7 +337,7 @@ class _NotioWidgetState extends State<NotioWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 50.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 20.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

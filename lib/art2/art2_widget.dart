@@ -12,7 +12,12 @@ import 'art2_model.dart';
 export 'art2_model.dart';
 
 class Art2Widget extends StatefulWidget {
-  const Art2Widget({super.key});
+  const Art2Widget({
+    super.key,
+    required this.verificat,
+  });
+
+  final bool? verificat;
 
   @override
   State<Art2Widget> createState() => _Art2WidgetState();
@@ -155,8 +160,34 @@ class _Art2WidgetState extends State<Art2Widget> {
                       ),
                     ),
                     FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        context.pushNamed(
+                          'cl1',
+                          queryParameters: {
+                            'press': serializeParam(
+                              true,
+                              ParamType.bool,
+                            ),
+                            'verificat': serializeParam(
+                              widget.verificat,
+                              ParamType.bool,
+                            ),
+                            'cont1': serializeParam(
+                              true,
+                              ParamType.bool,
+                            ),
+                          }.withoutNulls,
+                        );
+
+                        context.pushNamed(
+                          'art2',
+                          queryParameters: {
+                            'verificat': serializeParam(
+                              false,
+                              ParamType.bool,
+                            ),
+                          }.withoutNulls,
+                        );
                       },
                       text: 'Progreameaza-te',
                       options: FFButtonOptions(
@@ -182,35 +213,42 @@ class _Art2WidgetState extends State<Art2Widget> {
                   ],
                 ),
               ),
-              RatingBar.builder(
-                onRatingUpdate: (newValue) =>
-                    setState(() => _model.ratingBarValue = newValue),
-                itemBuilder: (context, index) => Icon(
-                  Icons.star_rounded,
-                  color: Color(0xFFFF7800),
-                ),
-                direction: Axis.horizontal,
-                initialRating: _model.ratingBarValue ??= 5.0,
-                unratedColor: FlutterFlowTheme.of(context).accent3,
-                itemCount: 5,
-                itemSize: 30.0,
-                glowColor: Color(0xFFFF7800),
-              ),
-              FlutterFlowAudioPlayer(
-                audio: Audio(
-                  'assets/audios/mp3-output-ttsfree(dot)com_(2).mp3',
-                  metas: Metas(
-                    id: 'mp3-output-ttsfree(dot)com_(2).mp3-7cb6f82e',
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                child: RatingBar.builder(
+                  onRatingUpdate: (newValue) =>
+                      setState(() => _model.ratingBarValue = newValue),
+                  itemBuilder: (context, index) => Icon(
+                    Icons.star_rounded,
+                    color: Color(0xFFFF7800),
                   ),
+                  direction: Axis.horizontal,
+                  initialRating: _model.ratingBarValue ??= 5.0,
+                  unratedColor: FlutterFlowTheme.of(context).accent3,
+                  itemCount: 5,
+                  itemSize: 30.0,
+                  glowColor: Color(0xFFFF7800),
                 ),
-                titleTextStyle: FlutterFlowTheme.of(context).titleLarge,
-                playbackDurationTextStyle:
-                    FlutterFlowTheme.of(context).labelMedium,
-                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                playbackButtonColor: FlutterFlowTheme.of(context).primary,
-                activeTrackColor: FlutterFlowTheme.of(context).alternate,
-                elevation: 4.0,
-                playInBackground: PlayInBackground.disabledRestoreOnForeground,
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                child: FlutterFlowAudioPlayer(
+                  audio: Audio(
+                    'assets/audios/mp3-output-ttsfree(dot)com_(2).mp3',
+                    metas: Metas(
+                      id: 'mp3-output-ttsfree(dot)com_(2).mp3-7cb6f82e',
+                    ),
+                  ),
+                  titleTextStyle: FlutterFlowTheme.of(context).titleLarge,
+                  playbackDurationTextStyle:
+                      FlutterFlowTheme.of(context).labelMedium,
+                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                  playbackButtonColor: FlutterFlowTheme.of(context).primary,
+                  activeTrackColor: FlutterFlowTheme.of(context).alternate,
+                  elevation: 4.0,
+                  playInBackground:
+                      PlayInBackground.disabledRestoreOnForeground,
+                ),
               ),
               Align(
                 alignment: AlignmentDirectional(0.0, 1.0),

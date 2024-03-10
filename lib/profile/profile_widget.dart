@@ -88,18 +88,34 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 16.0),
-                  child: Text(
-                    'Detalii Profil',
-                    style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          fontFamily: 'Plus Jakarta Sans',
-                          color: Color(0xFF14181B),
-                          fontSize: 27.0,
-                          fontWeight: FontWeight.normal,
-                        ),
-                  ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 16.0),
+                      child: Text(
+                        'Detalii Profil',
+                        style: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .override(
+                              fontFamily: 'Plus Jakarta Sans',
+                              color: Color(0xFF14181B),
+                              fontSize: 27.0,
+                              fontWeight: FontWeight.normal,
+                            ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                      child: Icon(
+                        Icons.person_2,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        size: 30.0,
+                      ),
+                    ),
+                  ],
                 ),
                 Padding(
                   padding:
@@ -342,22 +358,22 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   alignment: AlignmentDirectional(0.0, 1.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 80.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         GoRouter.of(context).prepareAuthEvent();
                         await authManager.signOut();
                         GoRouter.of(context).clearRedirectLocation();
 
-                        context.goNamedAuth('log', context.mounted);
+                        context.goNamedAuth('frontplpage', context.mounted);
                       },
-                      text: 'logout',
+                      text: 'Log Out',
                       options: FFButtonOptions(
                         height: 40.0,
                         padding: EdgeInsets.all(12.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFF49525B),
+                        color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Readex Pro',
@@ -377,7 +393,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   alignment: AlignmentDirectional(0.0, 1.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 200.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 110.0, 16.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

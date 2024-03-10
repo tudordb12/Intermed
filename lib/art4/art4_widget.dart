@@ -63,7 +63,7 @@ class _Art4WidgetState extends State<Art4Widget> {
                         onCameraIdle: (latLng) =>
                             _model.googleMapsCenter = latLng,
                         initialLocation: _model.googleMapsCenter ??=
-                            LatLng(13.106061, -59.613158),
+                            LatLng(45.7582534, 21.2143716),
                         markerColor: GoogleMarkerColor.violet,
                         mapType: MapType.normal,
                         style: GoogleMapStyle.standard,
@@ -179,35 +179,42 @@ class _Art4WidgetState extends State<Art4Widget> {
                   ],
                 ),
               ),
-              RatingBar.builder(
-                onRatingUpdate: (newValue) =>
-                    setState(() => _model.ratingBarValue = newValue),
-                itemBuilder: (context, index) => Icon(
-                  Icons.star_rounded,
-                  color: Color(0xFFFF7800),
-                ),
-                direction: Axis.horizontal,
-                initialRating: _model.ratingBarValue ??= 3.0,
-                unratedColor: FlutterFlowTheme.of(context).accent3,
-                itemCount: 5,
-                itemSize: 30.0,
-                glowColor: Color(0xFFFF7800),
-              ),
-              FlutterFlowAudioPlayer(
-                audio: Audio(
-                  'assets/audios/mp3-output-ttsfree(dot)com_(4).mp3',
-                  metas: Metas(
-                    id: 'mp3-output-ttsfree(dot)com_(4).mp3-d85acee4',
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                child: RatingBar.builder(
+                  onRatingUpdate: (newValue) =>
+                      setState(() => _model.ratingBarValue = newValue),
+                  itemBuilder: (context, index) => Icon(
+                    Icons.star_rounded,
+                    color: Color(0xFFFF7800),
                   ),
+                  direction: Axis.horizontal,
+                  initialRating: _model.ratingBarValue ??= 3.0,
+                  unratedColor: FlutterFlowTheme.of(context).accent3,
+                  itemCount: 5,
+                  itemSize: 30.0,
+                  glowColor: Color(0xFFFF7800),
                 ),
-                titleTextStyle: FlutterFlowTheme.of(context).titleLarge,
-                playbackDurationTextStyle:
-                    FlutterFlowTheme.of(context).labelMedium,
-                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                playbackButtonColor: FlutterFlowTheme.of(context).primary,
-                activeTrackColor: FlutterFlowTheme.of(context).alternate,
-                elevation: 4.0,
-                playInBackground: PlayInBackground.disabledRestoreOnForeground,
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                child: FlutterFlowAudioPlayer(
+                  audio: Audio(
+                    'assets/audios/mp3-output-ttsfree(dot)com_(4).mp3',
+                    metas: Metas(
+                      id: 'mp3-output-ttsfree(dot)com_(4).mp3-d85acee4',
+                    ),
+                  ),
+                  titleTextStyle: FlutterFlowTheme.of(context).titleLarge,
+                  playbackDurationTextStyle:
+                      FlutterFlowTheme.of(context).labelMedium,
+                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                  playbackButtonColor: FlutterFlowTheme.of(context).primary,
+                  activeTrackColor: FlutterFlowTheme.of(context).alternate,
+                  elevation: 4.0,
+                  playInBackground:
+                      PlayInBackground.disabledRestoreOnForeground,
+                ),
               ),
               Align(
                 alignment: AlignmentDirectional(0.0, 1.0),

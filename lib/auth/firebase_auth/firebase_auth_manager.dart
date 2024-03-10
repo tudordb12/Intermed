@@ -291,7 +291,7 @@ class FirebaseAuthManager extends AuthManager
       }
       return userCredential == null
           ? null
-          : HeckaltonFirebaseUser.fromUserCredential(userCredential);
+          : IntermedFirebaseUser.fromUserCredential(userCredential);
     } on FirebaseAuthException catch (e) {
       final errorMsg = switch (e.code) {
         'email-already-in-use' =>

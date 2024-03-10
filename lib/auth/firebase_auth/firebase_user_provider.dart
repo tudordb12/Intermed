@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class HeckaltonFirebaseUser extends BaseAuthUser {
-  HeckaltonFirebaseUser(this.user);
+class IntermedFirebaseUser extends BaseAuthUser {
+  IntermedFirebaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 
@@ -54,17 +54,17 @@ class HeckaltonFirebaseUser extends BaseAuthUser {
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
   static BaseAuthUser fromFirebaseUser(User? user) =>
-      HeckaltonFirebaseUser(user);
+      IntermedFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> heckaltonFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> intermedFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = HeckaltonFirebaseUser(user);
+        currentUser = IntermedFirebaseUser(user);
         return currentUser!;
       },
     );

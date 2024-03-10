@@ -63,7 +63,7 @@ class _Art1WidgetState extends State<Art1Widget> {
                         onCameraIdle: (latLng) =>
                             _model.googleMapsCenter = latLng,
                         initialLocation: _model.googleMapsCenter ??=
-                            LatLng(13.106061, -59.613158),
+                            LatLng(45.7582534, 21.2143716),
                         markerColor: GoogleMarkerColor.violet,
                         mapType: MapType.normal,
                         style: GoogleMapStyle.standard,
@@ -91,7 +91,7 @@ class _Art1WidgetState extends State<Art1Widget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: Text(
-                  '    Cabinetul de chirurgie generală este un spațiu dedicat diagnosticării și tratamentului diverselor afecțiuni chirurgicale care afectează diferite părți ale corpului uman.',
+                  'Cabinetul de chirurgie generală este un spațiu dedicat diagnosticării și tratamentului diverselor afecțiuni chirurgicale care afectează diferite părți ale corpului uman.',
                   style: FlutterFlowTheme.of(context).labelMedium.override(
                         fontFamily: 'Readex Pro',
                         fontSize: 16.0,
@@ -186,41 +186,49 @@ class _Art1WidgetState extends State<Art1Widget> {
                   ),
                 ),
               ),
-              RatingBar.builder(
-                onRatingUpdate: (newValue) =>
-                    setState(() => _model.ratingBarValue = newValue),
-                itemBuilder: (context, index) => Icon(
-                  Icons.star_rounded,
-                  color: Color(0xFFFF7800),
-                ),
-                direction: Axis.horizontal,
-                initialRating: _model.ratingBarValue ??= 4.0,
-                unratedColor: FlutterFlowTheme.of(context).accent3,
-                itemCount: 5,
-                itemSize: 30.0,
-                glowColor: Color(0xFFFF7800),
-              ),
-              FlutterFlowAudioPlayer(
-                audio: Audio(
-                  'assets/audios/mp3-output-ttsfree(dot)com.mp3',
-                  metas: Metas(
-                    id: 'mp3-output-ttsfree(dot)com.mp3-965b2c7e',
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                child: RatingBar.builder(
+                  onRatingUpdate: (newValue) =>
+                      setState(() => _model.ratingBarValue = newValue),
+                  itemBuilder: (context, index) => Icon(
+                    Icons.star_rounded,
+                    color: Color(0xFFFF7800),
                   ),
+                  direction: Axis.horizontal,
+                  initialRating: _model.ratingBarValue ??= 4.0,
+                  unratedColor: FlutterFlowTheme.of(context).accent3,
+                  itemCount: 5,
+                  itemSize: 30.0,
+                  glowColor: Color(0xFFFF7800),
                 ),
-                titleTextStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                      fontFamily: 'Readex Pro',
-                      fontSize: 17.0,
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                child: FlutterFlowAudioPlayer(
+                  audio: Audio(
+                    'assets/audios/mp3-output-ttsfree(dot)com.mp3',
+                    metas: Metas(
+                      id: 'mp3-output-ttsfree(dot)com.mp3-965b2c7e',
                     ),
-                playbackDurationTextStyle:
-                    FlutterFlowTheme.of(context).labelMedium.override(
-                          fontFamily: 'Readex Pro',
-                          fontSize: 16.0,
-                        ),
-                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                playbackButtonColor: Color(0xFF13C0C9),
-                activeTrackColor: FlutterFlowTheme.of(context).alternate,
-                elevation: 4.0,
-                playInBackground: PlayInBackground.disabledRestoreOnForeground,
+                  ),
+                  titleTextStyle:
+                      FlutterFlowTheme.of(context).bodyLarge.override(
+                            fontFamily: 'Readex Pro',
+                            fontSize: 17.0,
+                          ),
+                  playbackDurationTextStyle:
+                      FlutterFlowTheme.of(context).labelMedium.override(
+                            fontFamily: 'Readex Pro',
+                            fontSize: 16.0,
+                          ),
+                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                  playbackButtonColor: Color(0xFF13C0C9),
+                  activeTrackColor: FlutterFlowTheme.of(context).alternate,
+                  elevation: 4.0,
+                  playInBackground:
+                      PlayInBackground.disabledRestoreOnForeground,
+                ),
               ),
               Align(
                 alignment: AlignmentDirectional(0.0, 1.0),

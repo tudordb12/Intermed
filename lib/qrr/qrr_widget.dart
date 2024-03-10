@@ -41,7 +41,7 @@ class _QrrWidgetState extends State<QrrWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
           backgroundColor: Color(0xFF2C2F37),
           automaticallyImplyLeading: true,
@@ -75,18 +75,19 @@ class _QrrWidgetState extends State<QrrWidget> {
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.0, 1.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 200.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.asset(
-                      'assets/images/frame.png',
+                      'assets/images/Qr_HK.jpg',
                       width: 300.0,
-                      height: 270.0,
-                      fit: BoxFit.contain,
+                      height: 300.0,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),

@@ -28,9 +28,6 @@ class _SearchWidgetState extends State<SearchWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => SearchModel());
-
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -48,7 +45,7 @@ class _SearchWidgetState extends State<SearchWidget>
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).accent4,
           automaticallyImplyLeading: false,
@@ -59,7 +56,7 @@ class _SearchWidgetState extends State<SearchWidget>
             buttonSize: 60.0,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: Color(0xFF169DA8),
               size: 30.0,
             ),
             onPressed: () async {
@@ -67,10 +64,10 @@ class _SearchWidgetState extends State<SearchWidget>
             },
           ),
           title: Text(
-            'Cautare',
+            'Lista',
             style: FlutterFlowTheme.of(context).headlineSmall.override(
                   fontFamily: 'Outfit',
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: FlutterFlowTheme.of(context).tertiary,
                 ),
           ),
           actions: [],
@@ -83,116 +80,6 @@ class _SearchWidgetState extends State<SearchWidget>
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 0.0),
-                      child: TextFormField(
-                        controller: _model.textController,
-                        focusNode: _model.textFieldFocusNode,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          labelText: 'cautare...',
-                          labelStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Color(0xFF2C2F37),
-                                  ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xFF2C2F37),
-                              width: 2.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).primary,
-                              width: 2.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 2.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 2.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          filled: true,
-                          fillColor:
-                              FlutterFlowTheme.of(context).primaryBackground,
-                          prefixIcon: Icon(
-                            Icons.search_outlined,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                          ),
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium,
-                        maxLines: null,
-                        validator:
-                            _model.textControllerValidator.asValidator(context),
-                      ),
-                    ),
-                  ),
-                  FFButtonWidget(
-                    onPressed: () async {
-                      setState(() {
-                        _model.isShowFullList = false;
-                      });
-                    },
-                    text: 'cautare',
-                    options: FFButtonOptions(
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
-                              ),
-                      elevation: 3.0,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                  FlutterFlowIconButton(
-                    borderColor: FlutterFlowTheme.of(context).primary,
-                    borderRadius: 20.0,
-                    borderWidth: 1.0,
-                    buttonSize: 40.0,
-                    fillColor: FlutterFlowTheme.of(context).accent1,
-                    icon: Icon(
-                      Icons.close_sharp,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 24.0,
-                    ),
-                    onPressed: () async {
-                      setState(() {
-                        _model.isShowFullList = true;
-                      });
-                      setState(() {
-                        _model.textController?.clear();
-                      });
-                    },
-                  ),
-                ],
-              ),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -466,7 +353,15 @@ class _SearchWidgetState extends State<SearchWidget>
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              context.pushNamed('art2');
+                                              context.pushNamed(
+                                                'art2',
+                                                queryParameters: {
+                                                  'verificat': serializeParam(
+                                                    false,
+                                                    ParamType.bool,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
                                             },
                                             child: Card(
                                               clipBehavior:
@@ -489,7 +384,16 @@ class _SearchWidgetState extends State<SearchWidget>
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    context.pushNamed('art2');
+                                                    context.pushNamed(
+                                                      'art2',
+                                                      queryParameters: {
+                                                        'verificat':
+                                                            serializeParam(
+                                                          false,
+                                                          ParamType.bool,
+                                                        ),
+                                                      }.withoutNulls,
+                                                    );
                                                   },
                                                   child: Icon(
                                                     Icons
@@ -798,7 +702,7 @@ class _SearchWidgetState extends State<SearchWidget>
                         } else {
                           return Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 8.0, 8.0, 0.0),
+                                0.0, 8.0, 0.0, 0.0),
                             child: ListView(
                               padding: EdgeInsets.zero,
                               scrollDirection: Axis.vertical,
@@ -1057,7 +961,15 @@ class _SearchWidgetState extends State<SearchWidget>
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              context.pushNamed('art2');
+                                              context.pushNamed(
+                                                'art2',
+                                                queryParameters: {
+                                                  'verificat': serializeParam(
+                                                    false,
+                                                    ParamType.bool,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
                                             },
                                             child: Card(
                                               clipBehavior:
@@ -1080,7 +992,16 @@ class _SearchWidgetState extends State<SearchWidget>
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    context.pushNamed('art2');
+                                                    context.pushNamed(
+                                                      'art2',
+                                                      queryParameters: {
+                                                        'verificat':
+                                                            serializeParam(
+                                                          false,
+                                                          ParamType.bool,
+                                                        ),
+                                                      }.withoutNulls,
+                                                    );
                                                   },
                                                   child: Icon(
                                                     Icons
@@ -1393,7 +1314,7 @@ class _SearchWidgetState extends State<SearchWidget>
                 ],
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 40.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1411,18 +1332,21 @@ class _SearchWidgetState extends State<SearchWidget>
                         context.pushNamed('home');
                       },
                     ),
-                    FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30.0,
-                      buttonSize: 60.0,
-                      icon: Icon(
-                        Icons.search_sharp,
-                        color: FlutterFlowTheme.of(context).primary,
-                        size: 30.0,
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 30.0,
+                        buttonSize: 60.0,
+                        icon: Icon(
+                          Icons.search_sharp,
+                          color: FlutterFlowTheme.of(context).primary,
+                          size: 30.0,
+                        ),
+                        onPressed: () async {
+                          context.pushNamed('search');
+                        },
                       ),
-                      onPressed: () async {
-                        context.pushNamed('search');
-                      },
                     ),
                     FlutterFlowIconButton(
                       borderColor: Colors.transparent,

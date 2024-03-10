@@ -68,7 +68,7 @@ class _SignupWidgetState extends State<SignupWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         body: SafeArea(
           top: true,
           child: Row(
@@ -101,18 +101,22 @@ class _SignupWidgetState extends State<SignupWidget> {
                             ),
                           ),
                           alignment: AlignmentDirectional(-1.0, 0.0),
-                          child: Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: Text(
-                              'Creeaza cont',
-                              style: FlutterFlowTheme.of(context)
-                                  .displaySmall
-                                  .override(
-                                    fontFamily: 'Plus Jakarta Sans',
-                                    color: Color(0xFF101213),
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                            ),
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Text(
+                                  'Creeaza cont',
+                                  style: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .override(
+                                        fontFamily: 'Plus Jakarta Sans',
+                                        color: Color(0xFF101213),
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Align(
@@ -797,47 +801,59 @@ class _SignupWidgetState extends State<SignupWidget> {
                                 ),
 
                                 // You will have to add an action on this rich text to go to your login page.
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 12.0, 0.0, 12.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      context.pushNamed('log');
-                                    },
-                                    child: RichText(
-                                      textScaler:
-                                          MediaQuery.of(context).textScaler,
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: 'Aveti deja un cont ?',
-                                            style: TextStyle(),
-                                          ),
-                                          TextSpan(
-                                            text: '   ',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily:
-                                                      'Plus Jakarta Sans',
-                                                  color: Color(0xFF4B39EF),
-                                                  fontSize: 16.0,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                          )
-                                        ],
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelLarge
-                                            .override(
-                                              fontFamily: 'Plus Jakarta Sans',
-                                              color: Color(0xFF57636C),
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.w500,
+                                Align(
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 12.0, 0.0, 12.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed(
+                                          'log',
+                                          queryParameters: {
+                                            'cont1': serializeParam(
+                                              false,
+                                              ParamType.bool,
                                             ),
+                                          }.withoutNulls,
+                                        );
+                                      },
+                                      child: RichText(
+                                        textScaler:
+                                            MediaQuery.of(context).textScaler,
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: 'Aveti deja un cont ?',
+                                              style: TextStyle(),
+                                            ),
+                                            TextSpan(
+                                              text: '   ',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily:
+                                                        'Plus Jakarta Sans',
+                                                    color: Color(0xFF4B39EF),
+                                                    fontSize: 16.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            )
+                                          ],
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelLarge
+                                              .override(
+                                                fontFamily: 'Plus Jakarta Sans',
+                                                color: Color(0xFF57636C),
+                                                fontSize: 16.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
                                       ),
                                     ),
                                   ),
